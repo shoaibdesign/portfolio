@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Work — Shoaib</title>
+<meta name="description" content="Selected web and UI/UX design projects by Shoaib — landing pages, full websites, and product interfaces.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+<style>
+  .proj-card{
+    display:grid;
+    grid-template-columns: 1.1fr 0.9fr;
+    gap: 0;
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    overflow: hidden;
+    background: #fff;
+    margin-bottom: 28px;
+  }
+  .proj-card:nth-child(even){ grid-template-columns: 0.9fr 1.1fr; }
+  .proj-card:nth-child(even) .proj-visual{ order: 2; }
+  .proj-visual{
+    position:relative;
+    overflow:hidden;
+    background: var(--paper-dim);
+    height: 420px;
+  }
+  .proj-visual img{
+    width:100%;
+    height:auto;
+    display:block;
+    object-fit: cover;
+    object-position: top center;
+    transition: transform .5s ease;
+  }
+  .proj-card:hover .proj-visual img{ transform: translateY(-22px); }
+  .proj-visual::after{
+    content:"";
+    position:absolute;
+    left:0; right:0; bottom:0;
+    height:64px;
+    background: linear-gradient(to top, rgba(255,255,255,0.95), rgba(255,255,255,0));
+    pointer-events:none;
+  }
+  .proj-info{ padding: 44px 46px; display:flex; flex-direction:column; }
+  .proj-tag{
+    font-size: 12px; font-weight:600; letter-spacing:.06em; text-transform:uppercase;
+    color: var(--accent); margin-bottom: 14px;
+  }
+  .proj-info h3{ font-size: 24px; line-height:1.2; }
+  .proj-info p{ margin-top: 14px; font-size: 15px; }
+  .proj-meta{
+    display:flex; gap: 22px; margin-top: 26px; padding-top: 22px;
+    border-top: 1px solid var(--line); font-size: 13px; color: var(--muted);
+  }
+  .proj-meta b{ color: var(--ink); display:block; font-size: 13px; font-weight:600; margin-bottom:3px; }
+  .proj-visual{ cursor: zoom-in; }
+
+  /* Lightbox */
+  .lightbox{
+    position: fixed;
+    inset: 0;
+    background: rgba(15,15,17,0.92);
+    display: none;
+    align-items: center;
+    justify-content: center;
+    z-index: 999;
+    padding: 40px 20px;
+    cursor: zoom-out;
+  }
+  .lightbox.open{ display: flex; }
+  .lightbox img{
+    max-width: 900px;
+    width: 100%;
+    max-height: 88vh;
+    object-fit: contain;
+    border-radius: 10px;
+    box-shadow: 0 30px 80px rgba(0,0,0,0.5);
+    cursor: default;
+  }
+  .lightbox-close{
+    position: absolute;
+    top: 26px;
+    right: 30px;
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.1);
+    border: 1px solid rgba(255,255,255,0.2);
+    color: #fff;
+    font-size: 22px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: background .15s ease;
+  }
+  .lightbox-close:hover{ background: rgba(255,255,255,0.2); }
+  .lightbox-hint{
+    position: absolute;
+    bottom: 26px;
+    left: 0; right: 0;
+    text-align: center;
+    color: rgba(255,255,255,0.5);
+    font-size: 13px;
+  }
+  @media (max-width: 860px){
+    .proj-card, .proj-card:nth-child(even){ grid-template-columns: 1fr !important; }
+    .proj-card:nth-child(even) .proj-visual{ order: 0 !important; }
+    .proj-info{ padding: 30px 26px; }
+    .proj-visual{ height: 280px; }
+  }
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <div class="wrap">
+    <a href="index.html" class="brand"><span class="dot"></span>Shoaib</a>
+    <div class="navlinks" id="navlinks">
+      <a href="index.html">Home</a>
+      <a href="work.html" class="active">Work</a>
+      <a href="about.html">About</a>
+      <a href="contact.html">Contact</a>
+    </div>
+    <a href="contact.html" class="nav-cta">Start a project</a>
+    <button class="nav-toggle" id="navToggle" aria-label="Toggle menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<header style="padding: 90px 0 60px;">
+  <div class="wrap">
+    <div class="eyebrow">Work</div>
+    <h1 style="font-size: clamp(36px,5vw,56px); margin-top:18px; max-width:700px;">Eleven projects, eleven different problems to solve.</h1>
+    <p style="font-size:17px; max-width:560px; margin-top:18px;">A mix of SaaS, services, e-commerce, bookings, healthcare, and B2B platforms — designed in Figma, several taken through to coded builds.</p>
+  </div>
+</header>
+
+<section style="padding-top:0;">
+  <div class="wrap">
+
+    <!-- Project 1: ISAG Tactical Intelligence -->
+    <div class="proj-card" id="isag">
+      <div class="proj-visual">
+        <img src="assets/work/isag.jpg" alt="ISAG Tactical Intelligence Unit landing page design" loading="lazy" onclick="openLightbox(this.src)">
+      </div>
+      <div class="proj-info">
+        <div class="proj-tag">Landing Page Design · Security SaaS</div>
+        <h3>Tactical Intelligence Platform</h3>
+        <p>A long-form marketing page for a law-enforcement intelligence product. The job was making a dense, technical capability set feel trustworthy and easy to scan — clear hero promise, grouped feature cards, and a credibility-building stats section ahead of the contact form.</p>
+        <div class="proj-meta">
+          <div><b>Category</b>Security SaaS</div>
+          <div><b>Focus</b>Hero, feature grid, contact</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Project 2: Independent Living -->
+    <div class="proj-card" id="care">
+      <div class="proj-visual">
+        <img src="assets/work/independent-living.jpg" alt="Independent Living Support website design" loading="lazy" onclick="openLightbox(this.src)">
+      </div>
+      <div class="proj-info">
+        <div class="proj-tag">UI/UX Design · Full Website</div>
+        <h3>Independent Living Support</h3>
+        <p>A warm, accessible website for a disability support service. Designed around trust signals — testimonials, clear service categories, and an easy-to-find contact form — for visitors who are often making care decisions for a family member.</p>
+        <div class="proj-meta">
+          <div><b>Category</b>Care services</div>
+          <div><b>Focus</b>Services, testimonials, contact</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Project 3: Car Detailing -->
+    <div class="proj-card" id="car-detailing">
+      <div class="proj-visual">
+        <img src="assets/work/car-detailing.jpg" alt="Car detailing and protection website design" loading="lazy" onclick="openLightbox(this.src)">
+      </div>
+      <div class="proj-info">
+        <div class="proj-tag">UI/UX Design · Full Website</div>
+        <h3>Premium Car Protection &amp; Styling</h3>
+        <p>A dark, premium-feeling site for a car detailing studio offering ceramic coating, window tint, and paint protection film. Built around a strong visual gallery and a clear service breakdown, so customers can see the quality of work before booking.</p>
+        <div class="proj-meta">
+          <div><b>Category</b>Automotive services</div>
+          <div><b>Focus</b>Service showcase, gallery, booking</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Project 4: Marina Hair Extensions -->
+    <div class="proj-card" id="marina">
+      <div class="proj-visual">
+        <img src="assets/work/marina.jpg" alt="Marina Hair Extensions salon website design" loading="lazy" onclick="openLightbox(this.src)">
+      </div>
+      <div class="proj-info">
+        <div class="proj-tag">UI/UX Design · Full Website</div>
+        <h3>Marina Hair Extensions</h3>
+        <p>A salon website built to feel editorial and visual-first — service categories presented as a photo grid, a simple product section, and customer reviews up front to build trust with new clients booking online.</p>
+        <div class="proj-meta">
+          <div><b>Category</b>Beauty &amp; salon</div>
+          <div><b>Focus</b>Service grid, products, reviews</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Project 5: Solawave -->
+    <div class="proj-card" id="solawave">
+      <div class="proj-visual">
+        <img src="assets/work/solawave.jpg" alt="Solawave skincare redesign website design" loading="lazy" onclick="openLightbox(this.src)">
+      </div>
+      <div class="proj-info">
+        <div class="proj-tag">Website Redesign · E-commerce</div>
+        <h3>Solawave — Skincare Redesign</h3>
+        <p>A redesign for a red-light-therapy skincare brand, leaning into a softer, more editorial beauty aesthetic. Structured around featured products, a brand story section, and before/after customer reviews to build credibility for a results-driven product.</p>
+        <div class="proj-meta">
+          <div><b>Category</b>Beauty e-commerce</div>
+          <div><b>Focus</b>Product showcase, social proof</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Project 6: MSMV -->
+    <div class="proj-card" id="msmv">
+      <div class="proj-visual">
+        <img src="assets/work/msmv.jpg" alt="MSMV 3D kitchen planner SaaS landing page design" loading="lazy" onclick="openLightbox(this.src)">
+      </div>
+      <div class="proj-info">
+        <div class="proj-tag">Landing Page Design · SaaS</div>
+        <h3>MSMV — 3D Kitchen Planner</h3>
+        <p>A pricing-led product page for a 3D home-design tool. Walked through the product's workflow step by step (floor plan → materials → furniture) before presenting a clear three-tier pricing table — built to make a technical tool feel approachable.</p>
+        <div class="proj-meta">
+          <div><b>Category</b>Design software</div>
+          <div><b>Focus</b>Product walkthrough, pricing</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Project 7: Insure Hub -->
+    <div class="proj-card" id="insure-hub">
+      <div class="proj-visual">
+        <img src="assets/work/insure-hub.jpg" alt="Insure Hub insurance website design" loading="lazy" onclick="openLightbox(this.src)">
+      </div>
+      <div class="proj-info">
+        <div class="proj-tag">UI/UX Design · Full Website</div>
+        <h3>Insure Hub — Insurance Platform</h3>
+        <p>A homepage for an insurance app, designed to make a usually confusing category feel approachable. Policies are grouped into clear categories (Health, Basic, Life), with a free recommendation tool offered up front to help undecided visitors.</p>
+        <div class="proj-meta">
+          <div><b>Category</b>Insurance / FinTech</div>
+          <div><b>Focus</b>Policy categorization, trust-building</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Project 8: Traffic Manager / EU License -->
+    <div class="proj-card" id="traffic-manager">
+      <div class="proj-visual">
+        <img src="assets/work/traffic-manager.jpg" alt="Traffic Manager EU License rental website design" loading="lazy" onclick="openLightbox(this.src)">
+      </div>
+      <div class="proj-info">
+        <div class="proj-tag">UI/UX Design · Full Website</div>
+        <h3>Verkehrsleiter — EU License Rental</h3>
+        <p>A B2B service site for transport companies renting an EU traffic-manager license. A niche, technical service made clear through a "Why Choose Us" section, a simple three-step process, and trust badges from recognized industry bodies.</p>
+        <div class="proj-meta">
+          <div><b>Category</b>B2B / Logistics</div>
+          <div><b>Focus</b>Trust signals, process clarity</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Project 9: STULINK -->
+    <div class="proj-card" id="stulink">
+      <div class="proj-visual">
+        <img src="assets/work/stulink.jpg" alt="STULINK online tutoring platform website design" loading="lazy" onclick="openLightbox(this.src)">
+      </div>
+      <div class="proj-info">
+        <div class="proj-tag">UI/UX Design · Full Website</div>
+        <h3>STULINK — Online Tutoring Platform</h3>
+        <p>A course marketplace homepage connecting students with instructors. Organized free, newest, and upcoming courses into clear scannable rows, with trending category tiles to help students browse by interest rather than search blindly.</p>
+        <div class="proj-meta">
+          <div><b>Category</b>EdTech</div>
+          <div><b>Focus</b>Course discovery, browsing UX</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Project 10: Medellin Dispensary -->
+    <div class="proj-card" id="medellin">
+      <div class="proj-visual">
+        <img src="assets/work/medellin.jpg" alt="Medellin Dispensary healthcare website design" loading="lazy" onclick="openLightbox(this.src)">
+      </div>
+      <div class="proj-info">
+        <div class="proj-tag">UI/UX Design · Full Website</div>
+        <h3>Medellin Dispensary</h3>
+        <p>A calm, trust-led homepage for a healthcare provider. A soft blue palette and a quote-style hero set a reassuring tone, while a clear "What We Do" section, blog, and product grid give visitors several ways to learn more before they commit.</p>
+        <div class="proj-meta">
+          <div><b>Category</b>Healthcare</div>
+          <div><b>Focus</b>Trust-building, content structure</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Project 11: Bali Party Hire -->
+    <div class="proj-card" id="bali">
+      <div class="proj-visual">
+        <img src="assets/work/bali.jpg" alt="Bali Party Hire booking website design" loading="lazy" onclick="openLightbox(this.src)">
+      </div>
+      <div class="proj-info">
+        <div class="proj-tag">UI/UX Design · Booking Website</div>
+        <h3>Bali Party Hire</h3>
+        <p>A vibrant, sunny booking site for a pool-party rental company in Bali. Built around a clear three-tier package structure and a simple four-step "how it works" flow, with reviews and a contact form to turn browsers into bookings.</p>
+        <div class="proj-meta">
+          <div><b>Category</b>Events &amp; bookings</div>
+          <div><b>Focus</b>Packages, booking flow, reviews</div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<section style="padding-top:20px;">
+  <div class="wrap" style="text-align:center;">
+    <h2 style="font-size:30px;">Like what you see?</h2>
+    <p style="margin-top:14px; font-size:16px;">I'm currently taking on new freelance projects.</p>
+    <div style="margin-top:30px;">
+      <a href="contact.html" class="btn btn-primary">Get in touch</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap foot-row">
+    <div class="foot-left">© 2026 Shoaib. All rights reserved.</div>
+    <div class="foot-links">
+      <a href="mailto:shoaibdesignes@gmail.com">shoaibdesignes@gmail.com</a>
+      <a href="index.html">Home</a>
+      <a href="contact.html">Contact</a>
+    </div>
+  </div>
+</footer>
+
+<!-- Lightbox -->
+<div class="lightbox" id="lightbox" onclick="closeLightbox(event)">
+  <button class="lightbox-close" onclick="closeLightbox(event)" aria-label="Close">&times;</button>
+  <img id="lightboxImg" src="" alt="Full size project preview">
+  <div class="lightbox-hint">Click anywhere to close</div>
+</div>
+
+<script src="script.js"></script>
+<script>
+  function openLightbox(src){
+    const lb = document.getElementById('lightbox');
+    document.getElementById('lightboxImg').src = src;
+    lb.classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+  function closeLightbox(e){
+    document.getElementById('lightbox').classList.remove('open');
+    document.body.style.overflow = '';
+  }
+  document.addEventListener('keydown', (e) => {
+    if(e.key === 'Escape') closeLightbox();
+  });
+</script>
+</body>
+</html>
